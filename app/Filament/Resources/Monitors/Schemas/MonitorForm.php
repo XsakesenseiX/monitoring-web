@@ -66,7 +66,7 @@ class MonitorForm
                     ->columns(2),
 
                 Section::make('Notifications')
-                    ->description('Configure when this monitor should send notifications.')
+                    ->description('Sets the default notification settings when this monitor is first created. To fine-tune settings per channel and event afterwards, use the "Notification Settings" tab below.')
                     ->schema([
                         Toggle::make('notify_on_incident')
                             ->label('Notify on Incident')

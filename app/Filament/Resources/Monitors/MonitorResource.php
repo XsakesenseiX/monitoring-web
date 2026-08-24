@@ -6,6 +6,7 @@ use App\Filament\Resources\Monitors\Pages\CreateMonitor;
 use App\Filament\Resources\Monitors\Pages\EditMonitor;
 use App\Filament\Resources\Monitors\Pages\ListMonitors;
 use App\Filament\Resources\Monitors\Pages\ViewMonitor;
+use App\Filament\Resources\Monitors\RelationManagers\NotificationSettingsRelationManager;
 use App\Filament\Resources\Monitors\RelationManagers\ResultsRelationManager;
 use App\Filament\Resources\Monitors\Schemas\MonitorForm;
 use App\Filament\Resources\Monitors\Tables\MonitorsTable;
@@ -36,6 +37,7 @@ class MonitorResource extends Resource
     {
         return [
             ResultsRelationManager::class,
+            NotificationSettingsRelationManager::class,
         ];
     }
 

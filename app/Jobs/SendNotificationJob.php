@@ -74,13 +74,13 @@ class SendNotificationJob implements ShouldQueue
         $monitor = $notification->monitor;
         $incident = $notification->incident;
 
-        if (! $monitor->notification_email) {
+        if (! $notification->destination) {
             throw new \RuntimeException(
                 'Notification email is not configured.'
             );
         }
 
-        Mail::to($monitor->notification_email)->send(
+        Mail::to($notification->destination)->send(
             new MonitorIncidentMail(
                 $monitor,
                 $incident,
@@ -94,7 +94,7 @@ class SendNotificationJob implements ShouldQueue
         $monitor = $notification->monitor;
         $incident = $notification->incident;
 
-        if (! $monitor->notification_webhook_url) {
+        if (! $notification->destination) {
             throw new \RuntimeException(
                 'Notification webhook URL is not configured.'
             );
@@ -102,7 +102,7 @@ class SendNotificationJob implements ShouldQueue
 
         $response = Http::timeout(10)
             ->post(
-                $monitor->notification_webhook_url,
+                $notification->destination,
                 [
                     'event' => $notification->event,
 
